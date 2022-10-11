@@ -17,10 +17,11 @@ getRandFromRange(30, 10);
 
 const stringIsLimited = (inputStr, lengthLimit) => {
 
-  const strIsValid = ((typeof str === 'string') && (inputStr.length <= lengthLimit));
   const lengthLimitIsValid = isValidNumber(lengthLimit);
 
-  return (strIsValid && lengthLimitIsValid);
+  const inputIsStr = (typeof inputStr === 'string');
+
+  return (inputIsStr && lengthLimitIsValid && (inputStr.length <= lengthLimit));
 };
 
 stringIsLimited('', 0);
