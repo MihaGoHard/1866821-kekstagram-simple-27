@@ -20,11 +20,7 @@ const stringIsLimited = (inputStr, lengthLimit) => {
   const strIsValid = ((typeof str === 'string') && (inputStr.length <= lengthLimit));
   const lengthLimitIsValid = isValidNumber(lengthLimit);
 
-  if (strIsValid && lengthLimitIsValid) {
-    return true;
-  }
-
-  return false;
+  return (strIsValid && lengthLimitIsValid);
 };
 
 stringIsLimited('', 0);
