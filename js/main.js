@@ -1,5 +1,6 @@
 const PHOTOS_NUM = 25;
 
+
 const getRandFromRange = (a, b) => {
   if (a < 0 || b < 0) {
     return NaN;
@@ -9,7 +10,6 @@ const getRandFromRange = (a, b) => {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
-
 
 const stringIsLimited = (string, length) => {
   const res = string.length <= length;
@@ -27,21 +27,5 @@ const createPhoto = (id) => ({
   comments: getRandFromRange(0, 200)
 });
 
-const getPhotos = (length) => {
-  const idArr = [];
-  while (idArr.length < length) {
-    const id = getRandFromRange(1, length);
-    if (idArr.indexOf(id) === -1) {
-      idArr.push(id);
-    }
-  }
-
-  const photosArr = [];
-  idArr.forEach((id) => {
-    photosArr.push(createPhoto(id));
-  });
-
-  return photosArr;
-};
-
-getPhotos(PHOTOS_NUM);
+const createPhotos = () => Array.from({length: PHOTOS_NUM}, (_, index) => createPhoto(index + 1));
+createPhotos();
