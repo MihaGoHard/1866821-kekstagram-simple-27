@@ -1,27 +1,31 @@
-const isValidNumber = (num) => (typeof num === 'number' && num >= 0) ;
+const PHOTOS_NUM = 25;
 
-const getRandFromRange = (min, max) => {
-  const minIsValid = isValidNumber(min);
-  const maxIsValid = isValidNumber(max);
 
-  if (minIsValid && maxIsValid) {
-    const index = (min === max ? 0 : 1);
-    return Math.round(Math.random() * (max - min + index) + min);
+const getRandFromRange = (a, b) => {
+  if (a < 0 || b < 0) {
+    return NaN;
   }
-
-  return NaN;
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
 };
 
-getRandFromRange(30, 10);
-
-
-const stringIsLimited = (inputStr, lengthLimit) => {
-
-  const lengthLimitIsValid = isValidNumber(lengthLimit);
-
-  const inputIsStr = (typeof inputStr === 'string');
-
-  return (inputIsStr && lengthLimitIsValid && (inputStr.length <= lengthLimit));
+const stringIsLimited = (string, length) => {
+  const res = string.length <= length;
+  return res;
 };
 
 stringIsLimited('', 0);
+
+
+const createPhoto = (id) => ({
+  id,
+  url: `photos/${id}.jpg`,
+  description: 'Описание фото',
+  likes: getRandFromRange(15, 200),
+  comments: getRandFromRange(0, 200)
+});
+
+const createPhotos = () => Array.from({length: PHOTOS_NUM}, (_, index) => createPhoto(index + 1));
+createPhotos();
