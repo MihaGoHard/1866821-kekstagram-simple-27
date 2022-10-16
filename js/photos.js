@@ -1,7 +1,3 @@
-import './data.js';
-import {createPhotos} from './data.js';
-
-
 const createPhotoElem = (dataPhoto) => {
   const minPhotoTemplate = document.querySelector('#picture').content.querySelector('.picture');
   const newPhoto = minPhotoTemplate.cloneNode(true);
@@ -11,16 +7,9 @@ const createPhotoElem = (dataPhoto) => {
   return newPhoto;
 };
 
-const fillPhotos = () => {
-  const dataPhotos = createPhotos();
+const fillPhotos = (dataPhotos) => {
   const domPhotos = document.querySelector('.pictures');
-  const domPhotosFragment = document.createDocumentFragment();
-  dataPhotos.forEach( (dataPhoto) => {
-    const photo = createPhotoElem(dataPhoto);
-    domPhotosFragment.appendChild(photo);
-  });
-  domPhotos.appendChild(domPhotosFragment);
+  domPhotos.append(...dataPhotos.map((dataPhoto) => createPhotoElem(dataPhoto)));
 };
 
 export {fillPhotos};
-
