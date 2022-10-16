@@ -9,7 +9,9 @@ const createPhotoElem = (dataPhoto) => {
 
 const fillPhotos = (dataPhotos) => {
   const domPhotos = document.querySelector('.pictures');
-  domPhotos.append(...dataPhotos.map((dataPhoto) => createPhotoElem(dataPhoto)));
+  domPhotos.append(...dataPhotos.map((dataPhoto) => {
+    createPhotoElem(dataPhoto);
+  }));
 };
 
 export {fillPhotos};
