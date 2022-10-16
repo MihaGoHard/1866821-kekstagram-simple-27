@@ -1,7 +1,6 @@
-import './data.js';
-
 import {createPhotos} from './data.js';
+import {fillPhotos} from './photos.js';
 
-createPhotos();
-createPhotos();
+const dataPhotos = createPhotos();
 
+fillPhotos(dataPhotos);
