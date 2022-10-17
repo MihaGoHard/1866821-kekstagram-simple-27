@@ -24,7 +24,7 @@ const closeModal = () => {
 const openModalHandler = () => {
   const fileInput = document.querySelector('#upload-file');
   if (photoFormatIsValid(fileInput.value)) {
-    openModal(fileInput);
+    openModal();
   }
 };
 
