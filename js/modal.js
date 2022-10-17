@@ -40,10 +40,11 @@ const closeModalKeydownHandler = (evt) => {
 };
 
 
-const observModal = (uploadModal) => {
-  const closeModalBtn = uploadModal.querySelector('#upload-cancel');
-  uploadModal.addEventListener('change', () => {
-    if (!uploadModal.classList.contains('hidden')) {
+const observModal = (fullModal) => {
+  const imgUpload = fullModal.querySelector('.img-upload__overlay');
+  const closeModalBtn = fullModal.querySelector('#upload-cancel');
+  imgUpload.addEventListener('change', () => {
+    if (!imgUpload.classList.contains('hidden')) {
       closeModalBtn.addEventListener('click', closeModalHandler);
       document.addEventListener('keydown', closeModalKeydownHandler);
     } else {
