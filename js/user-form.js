@@ -5,7 +5,6 @@ const validateSentForm = (userForm) => {
     const isValid = pristine.validate();
     if (!isValid) {
       evt.preventDefault();
-      alert("Комментарий неверен");
     }
   });
 };

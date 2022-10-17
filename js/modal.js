@@ -25,8 +25,6 @@ const openModalHandler = () => {
   const fileInput = document.querySelector('#upload-file');
   if (photoFormatIsValid(fileInput.value)) {
     openModal(fileInput);
-  } else {
-    alert('Неподдерживаемый формат файла');
   }
 };
 
