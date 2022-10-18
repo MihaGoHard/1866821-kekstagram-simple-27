@@ -13,17 +13,12 @@ const stringIsLimited = (string, length) => {
   return res;
 };
 
-const photoFormatIsValid = (path) => {
+const checkPhotoFormat = (path) => {
   const imgPath = /.jpg|.jpeg|.png$/;
   return imgPath.test(path);
 };
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-const callChangeEvent = (node) => {
-  const changeEvent = new Event('change');
-  node.dispatchEvent(changeEvent);
-};
 
-
-export {getRandFromRange, stringIsLimited, photoFormatIsValid, isEscapeKey, callChangeEvent};
+export {getRandFromRange, stringIsLimited, checkPhotoFormat, isEscapeKey};

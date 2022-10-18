@@ -1,4 +1,4 @@
-const validateSentForm = (userForm) => {
+const setSubmitFormListener = (userForm) => {
   const pristine = new Pristine(userForm);
 
   userForm.addEventListener('submit', (evt) => {
@@ -9,4 +9,4 @@ const validateSentForm = (userForm) => {
   });
 };
 
-export {validateSentForm};
+export {setSubmitFormListener};

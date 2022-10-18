@@ -1,29 +1,32 @@
-import {photoFormatIsValid, isEscapeKey, callChangeEvent} from './util.js';
+import {checkPhotoFormat, isEscapeKey} from './util.js';
+
+const uploadOverlay = document.querySelector('.img-upload__overlay');
+const closeModalBtn = uploadOverlay.querySelector('#upload-cancel');
+const fileInput = document.querySelector('#upload-file');
+const userForm = document.querySelector('#upload-select-image');
+const imgUpload = userForm.querySelector('.img-upload__overlay');
 
 const changeModalGlobalClass = () => {
   document.body.classList.toggle('modal-open');
 };
 
 const openModal = () => {
-  const uploadOverlay = document.querySelector('.img-upload__overlay');
+  fileInput.value = '';
   uploadOverlay.classList.remove('hidden');
-  callChangeEvent(uploadOverlay);
+  toggleUploadOverlayListeners();
   changeModalGlobalClass();
 };
 
 const closeModal = () => {
-  const fileInput = document.querySelector('#upload-file');
   fileInput.value = '';
-  const uploadOverlay = document.querySelector('.img-upload__overlay');
   uploadOverlay.classList.add('hidden');
-  callChangeEvent(uploadOverlay);
+  toggleUploadOverlayListeners();
   changeModalGlobalClass();
 };
 
 
 const openModalHandler = () => {
-  const fileInput = document.querySelector('#upload-file');
-  if (photoFormatIsValid(fileInput.value)) {
+  if (checkPhotoFormat(fileInput.value)) {
     openModal();
   }
 };
@@ -37,19 +40,14 @@ const closeModalKeydownHandler = (evt) => {
   }
 };
 
+function toggleUploadOverlayListeners () {
+  const method = imgUpload.classList.contains('hidden') ? 'removeEventListener' : 'addEventListener';
+  closeModalBtn[method]('click', closeModalHandler);
+  document[method]('keydown', closeModalKeydownHandler);
+}
 
-const observModal = (fullModal) => {
-  const imgUpload = fullModal.querySelector('.img-upload__overlay');
-  const closeModalBtn = fullModal.querySelector('#upload-cancel');
-  imgUpload.addEventListener('change', () => {
-    if (!imgUpload.classList.contains('hidden')) {
-      closeModalBtn.addEventListener('click', closeModalHandler);
-      document.addEventListener('keydown', closeModalKeydownHandler);
-    } else {
-      closeModalBtn.removeEventListener('click', closeModalHandler);
-      document.removeEventListener('keydown', closeModalKeydownHandler);
-    }
-  });
+const setModalChangeListener = (inputNode) => {
+  inputNode.addEventListener('change', openModalHandler);
 };
 
-export {openModalHandler, observModal};
+export {setModalChangeListener};
