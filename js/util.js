@@ -20,5 +20,4 @@ const checkPhotoFormat = (path) => {
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-
 export {getRandFromRange, stringIsLimited, checkPhotoFormat, isEscapeKey};
