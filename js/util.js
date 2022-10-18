@@ -13,4 +13,12 @@ const stringIsLimited = (string, length) => {
   return res;
 };
 
-export {getRandFromRange, stringIsLimited};
+const checkPhotoFormat = (path) => {
+  const imgPath = /.jpg|.jpeg|.png$/;
+  return imgPath.test(path);
+};
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+
+export {getRandFromRange, stringIsLimited, checkPhotoFormat, isEscapeKey};
