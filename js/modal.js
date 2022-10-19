@@ -1,4 +1,6 @@
 import {checkPhotoFormat, isEscapeKey} from './util.js';
+import {toggleAppListeners, resetImgSettings} from './common.js';
+
 
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const closeModalBtn = uploadOverlay.querySelector('#upload-cancel');
@@ -11,16 +13,13 @@ const changeModalGlobalClass = () => {
 };
 
 const openModal = () => {
-  fileInput.value = '';
   uploadOverlay.classList.remove('hidden');
-  toggleUploadOverlayListeners();
   changeModalGlobalClass();
 };
 
 const closeModal = () => {
   fileInput.value = '';
   uploadOverlay.classList.add('hidden');
-  toggleUploadOverlayListeners();
   changeModalGlobalClass();
 };
 
@@ -28,15 +27,22 @@ const closeModal = () => {
 const openModalHandler = () => {
   if (checkPhotoFormat(fileInput.value)) {
     openModal();
+    toggleAppListeners();
   }
 };
 
-const closeModalHandler = () => closeModal();
+const closeModalHandler = () => {
+  closeModal();
+  toggleAppListeners();
+  resetImgSettings();
+};
 
 const closeModalKeydownHandler = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeModal();
+    toggleAppListeners();
+    resetImgSettings();
   }
 };
 
@@ -50,4 +56,4 @@ const setModalChangeListener = (inputNode) => {
   inputNode.addEventListener('change', openModalHandler);
 };
 
-export {setModalChangeListener};
+export {setModalChangeListener, toggleUploadOverlayListeners, imgUpload};
