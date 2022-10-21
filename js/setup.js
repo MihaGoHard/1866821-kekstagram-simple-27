@@ -5,6 +5,13 @@ const SCALE_STEP = 25;
 const MIN_SCALE_VALUE = SCALE_STEP;
 const POINT_INDEX = 100;
 
+const SEND_DATA_ADDRESS = 'https://27.javascript.pages.academy/kekstagram-simple';
+const GET_DATA_ADDRESS = 'https://27.javascript.pages.academy/kekstagram-simple/data';
+
+const ALERT_SUCCESS_CLASS = 'success';
+const ALERT_ERROR_CLASS = 'error';
+const ALERT_SHOW_TIME = 3000;
+const SERVER_ERROR_MSG = 'повторите попытку позже';
 
 const SLIDER_EFFECT_PARAMS = {
   'none': {
@@ -51,4 +58,17 @@ const SLIDER_EFFECT_PARAMS = {
   },
 };
 
-export {PHOTOS_NUM, MAX_SCALE_VALUE, MIN_SCALE_VALUE, SCALE_STEP, POINT_INDEX, SLIDER_EFFECT_PARAMS};
+export {
+  PHOTOS_NUM,
+  MAX_SCALE_VALUE,
+  MIN_SCALE_VALUE,
+  SCALE_STEP,
+  POINT_INDEX,
+  SLIDER_EFFECT_PARAMS,
+  SEND_DATA_ADDRESS,
+  GET_DATA_ADDRESS,
+  ALERT_ERROR_CLASS,
+  ALERT_SUCCESS_CLASS,
+  ALERT_SHOW_TIME,
+  SERVER_ERROR_MSG
+};

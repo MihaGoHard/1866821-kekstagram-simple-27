@@ -8,7 +8,7 @@ const scaleInput = scaleNode.querySelector('.scale__control--value');
 const imgPreview = document.querySelector('.img-upload__preview img');
 
 const resetScale = () => {
-  imgPreview.setAttribute('style', 'transform: none;');
+  imgPreview.style.transform = 'none';
 };
 
 
@@ -21,7 +21,7 @@ const changeScale = (isUpScale, currScaleValue) => {
   }
 
   const pointScaleValue = currScaleValue / POINT_INDEX;
-  imgPreview.setAttribute('style', `transform: scale(${pointScaleValue});`);
+  imgPreview.style.transform = `scale(${pointScaleValue})`;
   scaleInput.value = getPercentFromNumber(currScaleValue);
 };
 

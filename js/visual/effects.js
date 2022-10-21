@@ -7,10 +7,12 @@ const previewImg = document.querySelector('.img-upload__preview img');
 const imgClasslist = previewImg.classList;
 
 const exchangeInputsAttr = (currCheckedInput) => {
+
   const prevCheckedInput = effectsList.querySelector('[checked]');
 
   prevCheckedInput.removeAttribute('checked');
   currCheckedInput.setAttribute('checked', '');
+  currCheckedInput.checked = 'checked';
 };
 
 

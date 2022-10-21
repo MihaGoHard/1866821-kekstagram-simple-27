@@ -1,5 +1,7 @@
 import {checkPhotoFormat, isEscapeKey} from './util.js';
-import {toggleAppListeners, resetImgSettings} from './common.js';
+import {toggleModalListeners, resetModalSettings} from './common.js';
+import {ALERT_ERROR_CLASS} from './setup.js';
+import {toggleAlertElement} from './alert.js';
 
 
 const uploadOverlay = document.querySelector('.img-upload__overlay');
@@ -15,34 +17,33 @@ const changeModalGlobalClass = () => {
 const openModal = () => {
   uploadOverlay.classList.remove('hidden');
   changeModalGlobalClass();
+  toggleModalListeners();
 };
 
 const closeModal = () => {
-  fileInput.value = '';
   uploadOverlay.classList.add('hidden');
   changeModalGlobalClass();
+  toggleModalListeners();
+  resetModalSettings();
 };
 
 
 const openModalHandler = () => {
   if (checkPhotoFormat(fileInput.value)) {
     openModal();
-    toggleAppListeners();
+  } else {
+    toggleAlertElement(ALERT_ERROR_CLASS);
   }
 };
 
 const closeModalHandler = () => {
   closeModal();
-  toggleAppListeners();
-  resetImgSettings();
 };
 
 const closeModalKeydownHandler = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeModal();
-    toggleAppListeners();
-    resetImgSettings();
   }
 };
 
@@ -56,4 +57,4 @@ const setModalChangeListener = (inputNode) => {
   inputNode.addEventListener('change', openModalHandler);
 };
 
-export {setModalChangeListener, toggleUploadOverlayListeners, imgUpload};
+export {setModalChangeListener, toggleUploadOverlayListeners, closeModal, imgUpload};
