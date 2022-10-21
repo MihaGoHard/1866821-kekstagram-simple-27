@@ -20,8 +20,16 @@ const checkPhotoFormat = (path) => {
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
+
 const getNumberFromPercent = (percent) => (Number(percent.replace('%', '')));
 
 const getPercentFromNumber = (number) => (`${String(number)}%`);
 
-export {getRandFromRange, stringIsLimited, checkPhotoFormat, isEscapeKey, getNumberFromPercent, getPercentFromNumber};
+export {
+  getRandFromRange,
+  stringIsLimited,
+  checkPhotoFormat,
+  isEscapeKey,
+  getNumberFromPercent,
+  getPercentFromNumber
+};
