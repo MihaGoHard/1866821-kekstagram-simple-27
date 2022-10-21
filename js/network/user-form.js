@@ -32,8 +32,8 @@ const setUserFormSubmit = (onSuccess) => {
           toggleAlertElement(ALERT_SUCCESS_CLASS);
         },
         () => {
-          toggleAlertElement(ALERT_ERROR_CLASS);
           toggleBlockSubmitButton();
+          toggleAlertElement(ALERT_ERROR_CLASS);
         },
         formData
       );

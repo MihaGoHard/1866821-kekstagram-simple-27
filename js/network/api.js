@@ -1,10 +1,13 @@
-import {SEND_DATA_ADDRESS} from '../setup.js';
+import {SEND_DATA_ADDRESS, GET_DATA_ADDRESS, SERVER_ERROR_MSG} from '../setup.js';
 
-const getData = (onSuccess) => {
-  fetch('https://27.javascript.pages.academy/code-and-magick/data')
+const getData = (onSuccess, onFail) => {
+  fetch(GET_DATA_ADDRESS)
     .then((response) => response.json())
-    .then((wizards) => {
-      onSuccess(wizards);
+    .then((photos) => {
+      onSuccess(photos);
+    })
+    .catch(() => {
+      onFail((SERVER_ERROR_MSG));
     });
 };
 
@@ -20,11 +23,11 @@ const sendData = (onSuccess, onFail, body) => {
       if (response.ok) {
         onSuccess();
       } else {
-        onFail('Не удалось отправить форму. Попробуйте ещё раз');
+        onFail();
       }
     })
     .catch(() => {
-      onFail('Не удалось отправить форму. Попробуйте ещё раз');
+      onFail();
     });
 };
 

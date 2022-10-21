@@ -1,5 +1,5 @@
 import {isEscapeKey} from './util.js';
-import {ALERT_ERROR_CLASS, ALERT_SUCCESS_CLASS} from './setup.js';
+import {ALERT_ERROR_CLASS, ALERT_SUCCESS_CLASS, ALERT_SHOW_TIME} from './setup.js';
 
 const getResultClass = (elemClassList) => {
   const isSuccessButton = elemClassList.contains(`${ALERT_SUCCESS_CLASS}__button`);
@@ -67,4 +67,19 @@ function toggleAlertElement(resultClass) {
 
 }
 
-export {toggleAlertElement};
+
+const showServerAlert = (message) => {
+  const alertContainer = document.createElement('div');
+
+  alertContainer.classList = 'server-alert';
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
+
+export {toggleAlertElement, showServerAlert};
