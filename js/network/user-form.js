@@ -4,6 +4,7 @@ import {ALERT_ERROR_CLASS, ALERT_SUCCESS_CLASS} from '../setup.js';
 
 const userForm = document.querySelector('#upload-select-image');
 const submitButton = document.querySelector('.img-upload__submit');
+const pristine = new Pristine(userForm);
 
 
 const toggleBlockSubmitButton = () => {
@@ -11,11 +12,8 @@ const toggleBlockSubmitButton = () => {
 };
 
 
-const setUserFormSubmit = (onSuccess) => {
-  const pristine = new Pristine(userForm);
-
-  userForm.addEventListener('submit', (evt) => {
-
+const submitFormHandler = (onSuccess) => {
+  const submitFormСlosured = (evt) => {
     evt.preventDefault();
 
     const isValid = pristine.validate();
@@ -40,7 +38,14 @@ const setUserFormSubmit = (onSuccess) => {
     } else {
       toggleAlertElement(ALERT_ERROR_CLASS);
     }
-  });
+  };
+  return submitFormСlosured;
+};
+
+
+const setUserFormSubmit = (onSuccess) => {
+
+  userForm.addEventListener('submit', submitFormHandler(onSuccess));
 };
 
 export {setUserFormSubmit};

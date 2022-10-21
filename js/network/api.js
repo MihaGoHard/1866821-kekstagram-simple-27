@@ -22,9 +22,9 @@ const sendData = (onSuccess, onFail, body) => {
     .then((response) => {
       if (response.ok) {
         onSuccess();
-      } else {
-        onFail();
+        return;
       }
+      onFail();
     })
     .catch(() => {
       onFail();
