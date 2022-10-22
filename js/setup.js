@@ -7,6 +7,7 @@ const POINT_INDEX = 100;
 
 const SEND_DATA_ADDRESS = 'https://27.javascript.pages.academy/kekstagram-simple';
 const GET_DATA_ADDRESS = 'https://27.javascript.pages.academy/kekstagram-simple/data';
+const DEFAULT_PHOTO_SRC = 'img/upload-default-image.jpg';
 
 const ALERT_SUCCESS_CLASS = 'success';
 const ALERT_ERROR_CLASS = 'error';
@@ -70,5 +71,6 @@ export {
   ALERT_ERROR_CLASS,
   ALERT_SUCCESS_CLASS,
   ALERT_SHOW_TIME,
-  SERVER_ERROR_MSG
+  SERVER_ERROR_MSG,
+  DEFAULT_PHOTO_SRC
 };

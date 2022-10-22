@@ -18,6 +18,8 @@ const checkPhotoFormat = (path) => {
   return imgPath.test(path);
 };
 
+const checkFileWebSrc = (path) => (path !== '');
+
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 
@@ -29,6 +31,7 @@ export {
   getRandFromRange,
   stringIsLimited,
   checkPhotoFormat,
+  checkFileWebSrc,
   isEscapeKey,
   getNumberFromPercent,
   getPercentFromNumber
