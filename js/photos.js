@@ -2,7 +2,13 @@ import {DEFAULT_PHOTO_SRC} from './setup.js';
 
 const imgPreview = document.querySelector('.img-upload__preview img');
 const fileInput = document.querySelector('#upload-file');
-const effectList = document.querySelectorAll('.effects__list .effects__preview');
+const effectListNode = document.querySelector('.effects__list');
+const effectList = effectListNode.querySelectorAll('.effects__list .effects__preview');
+
+const checkFileWebSrc = (path) => {
+  const regPath = /^blob:http|^blob:https/;
+  return regPath.test(path);
+};
 
 const createPhotoElem = (dataPhoto) => {
   const minPhotoTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -28,52 +34,39 @@ const getWebPhotoSrc = () => {
 };
 
 
-const toggleMainPreview = (inWebSrc, isDefaultPhoto) => {
-  const webSrc = isDefaultPhoto ? DEFAULT_PHOTO_SRC : inWebSrc;
+const toggleMainPreview = (src, isDefaultPhoto) => {
 
-  const setImgProps = () => {
-    imgPreview.style.width = '100%';
-    imgPreview.style.height = '100%';
-    imgPreview.style.objectFit = 'cover';
-  };
-
-  const resetImgProps = () => {
-    imgPreview.removeAttribute('style', 'width');
-    imgPreview.removeAttribute('style', 'height');
-    imgPreview.removeAttribute('style', 'object-fit');
-  };
-
-  imgPreview.src = webSrc;
-
-  if (isDefaultPhoto) {
-    resetImgProps();
+  if (!checkFileWebSrc(src) || isDefaultPhoto) {
+    imgPreview.classList.remove('img-upload__img-full');
+    imgPreview.src = DEFAULT_PHOTO_SRC;
     return;
   }
 
-  setImgProps();
-
-  imgPreview.src = webSrc;
+  imgPreview.classList.add('img-upload__img-full');
+  imgPreview.src = src;
 };
 
-const toggleListPreviews = (webSrc, isDefaultPhoto) => {
+const toggleListPreviews = (src, isDefaultPhoto) => {
 
-  if (isDefaultPhoto) {
+  if (!checkFileWebSrc(src) || isDefaultPhoto) {
+    effectListNode.classList.remove('effects__list--coverd-item');
     effectList.forEach((preview) => {
       preview.removeAttribute('style', 'background-image');
-      preview.removeAttribute('style', 'background-size');
     });
+
     return;
   }
 
+  effectListNode.classList.add('effects__list--coverd-item');
   effectList.forEach((preview) => {
-    preview.style.backgroundImage = `url('${webSrc}')`;
-    preview.style.backgroundSize = 'cover';
+    preview.style.backgroundImage = `url('${src}')`;
   });
 };
 
-const toggleModalPhotos = (webSrc, isDefaultPhoto) => {
-  toggleMainPreview(webSrc, isDefaultPhoto);
-  toggleListPreviews(webSrc, isDefaultPhoto);
+const toggleModalPhotos = (src = DEFAULT_PHOTO_SRC) => {
+  const isDefaultPhoto = src === DEFAULT_PHOTO_SRC;
+  toggleMainPreview(src, isDefaultPhoto);
+  toggleListPreviews(src, isDefaultPhoto);
 };
 
-export {fillPhotos, toggleModalPhotos, getWebPhotoSrc};
+export {fillPhotos, toggleModalPhotos, getWebPhotoSrc, checkFileWebSrc};

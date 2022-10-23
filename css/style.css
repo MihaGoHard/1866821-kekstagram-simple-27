@@ -516,12 +516,18 @@ main {
   background-color: #ffffff;
 }
 
+
 .img-upload__preview img {
   display: block;
   max-width: 600px;
   max-height: 600px;
 }
 
+.img-upload__preview img.img-upload__img-full {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /**
   * Шкала регулирования глубины фильтра
@@ -592,6 +598,10 @@ main {
 
   list-style: none;
   text-align: center;
+}
+
+.effects__list--coverd-item .effects__preview {
+  background-size: cover;
 }
 
 .effects__item {
@@ -667,7 +677,6 @@ main {
   -webkit-filter: brightness(3);
           filter: brightness(3);
 }
-
 
 /**
   * Блок добавления хэштегов и комментария к изображению
