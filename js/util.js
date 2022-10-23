@@ -14,9 +14,10 @@ const stringIsLimited = (string, length) => {
 };
 
 const checkPhotoFormat = (path) => {
-  const imgPath = /.jpg|.jpeg|.png$/;
-  return imgPath.test(path);
+  const regPath = /.jpg|.jpeg|.png$/;
+  return regPath.test(path);
 };
+
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 

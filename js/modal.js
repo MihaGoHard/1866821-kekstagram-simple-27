@@ -2,6 +2,7 @@ import {checkPhotoFormat, isEscapeKey} from './util.js';
 import {toggleModalListeners, resetModalSettings} from './common.js';
 import {ALERT_ERROR_CLASS} from './setup.js';
 import {toggleAlertElement} from './alert.js';
+import {toggleModalPhotos, getWebPhotoSrc, checkFileWebSrc} from './photos.js';
 
 
 const uploadOverlay = document.querySelector('.img-upload__overlay');
@@ -29,7 +30,10 @@ const closeModal = () => {
 
 
 const openModalHandler = () => {
-  if (checkPhotoFormat(fileInput.value)) {
+  const fileWebSrc = getWebPhotoSrc();
+
+  if (checkPhotoFormat(fileInput.value) && checkFileWebSrc(fileWebSrc)) {
+    toggleModalPhotos(fileWebSrc, false);
     openModal();
   } else {
     toggleAlertElement(ALERT_ERROR_CLASS);
@@ -38,6 +42,7 @@ const openModalHandler = () => {
 
 const closeModalHandler = () => {
   closeModal();
+  toggleModalPhotos('', true);
 };
 
 const closeModalKeydownHandler = (evt) => {
@@ -57,4 +62,9 @@ const setModalChangeListener = (inputNode) => {
   inputNode.addEventListener('change', openModalHandler);
 };
 
-export {setModalChangeListener, toggleUploadOverlayListeners, closeModal, imgUpload};
+export {
+  setModalChangeListener,
+  toggleUploadOverlayListeners,
+  closeModal,
+  imgUpload
+};
